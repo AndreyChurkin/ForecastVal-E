@@ -5,6 +5,13 @@
 # ForecastVal-E
 **Forecast VALuation for ENERGY data markets**
 
+The figure below illustrates the forecast valuation framework for a two-settlement electricity market, where the circled numbers indicate the chronological order of valuation steps.
+
+<p align="center">
+<img src="forecast_valuation_framework.png" alt="Framework" width="500">
+</p>
+
+First, ①, in the day-ahead electricity market, each EVA submits its forecast of expected EV power consumption. This information is used by the system operator to determine the optimal day-ahead dispatch ②, including dispatch costs and commitments for the balancing market. These results, together with the EVA forecasts, are provided to the data market operator for valuation. Then, during real-time operation, actual EV loads are observed ③, and the system operator estimates the cost of balancing actions resulting from forecast errors ④. Finally, this information is submitted to the data marketplace, where the valuation mechanism determines payments for EVAs ⑤.
 
 ### EXAMPLES:
 To be added...
