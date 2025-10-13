@@ -32,18 +32,9 @@ optimize_with = "Gurobi"
 
 # # Select the .m network data file to solve OPF:
 
-# file = "../cases/case33bw (pure).m" # Note: the original case33bw has parsing problems
+# file = "../cases/case33bw (pure).m" # the original case33bw has parsing problems
 # file = "../cases/case33bw (mod) v1.0.m" # <-- voltage at node 1 fixed to 1.0 pu
 file = "../cases/case33bw (mod) v1.1.m" # <-- case33bw used in the paper "Tracing, Ranking and Valuation of Aggregated DER Flexibility in Active Distribution Networks"
-
-""" Note that MLData_Griffin case = 124busflexdistributionnetworkuk.m """
-# file = "C:\\Users\\m36330ac\\Documents\\MEGA\\Eduardo Alejandro Martinez Cesena\\Models\\MLData_Griffin (mod) v1.1.m"
-# file = "C:\\Users\\m36330ac\\Documents\\MEGA\\Eduardo Alejandro Martinez Cesena\\Models\\MLData_Griffin (mod) v2.0 (loop 7-26 off).m"
-# file = "C:\\Users\\m36330ac\\Documents\\MEGA\\Eduardo Alejandro Martinez Cesena\\Models\\MLData_Griffin (mod) v2.0 (loop 7-15 off).m"
-
-""" Note that Clover_Hill case = 38busflexdistributionnetworkuk.m """
-# file = "C:\\Users\\m36330ac\\Documents\\MEGA\\Eduardo Alejandro Martinez Cesena\\Models\\Network reconfiguration\\Distribution_Network_UK_Clover_Hill_v2b.m"
-
 
 
 network_data = parse_file(file)
