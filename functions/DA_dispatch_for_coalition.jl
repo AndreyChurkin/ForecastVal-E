@@ -1,7 +1,10 @@
 """
 This code formulates the OPF optimisation model corresponding to the day-ahead dispatch for a coalition of EVAs.
 EVAs within a certain coalition are assumed to provide their forecasts.
-For other EVAs, DSO uses the available “status quo” forecast, which is typically less accurate.
+For other EVAs, DSO uses the available baseline “status quo” forecast, which is typically less accurate.
+
+This model is not intended to be executed independently.
+It is called by higher-level routines that perform the full day-ahead and real-time dispatch optimisation workflow.
 
 Andrey Churkin https://andreychurkin.ru/
 

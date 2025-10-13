@@ -1,5 +1,8 @@
 """
-This code formulates the OPF optimisation model corresponding to the day-ahead dispatch
+This code formulates the OPF optimisation model corresponding to the day-ahead dispatch.
+
+This model is not intended to be executed independently.
+It is called by higher-level routines that perform the full day-ahead and real-time dispatch optimisation workflow.
 
 Andrey Churkin https://andreychurkin.ru/
 

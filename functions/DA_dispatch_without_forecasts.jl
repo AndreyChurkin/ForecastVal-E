@@ -1,7 +1,10 @@
 """
 This code formulates the OPF optimisation model corresponding to the day-ahead dispatch without any EVA forecasts.
-That is, DSO can use only its “status quo” forecasts. No EVA forecasts is available.
+That is, DSO can use only its baseline “status quo” forecasts. No EVA forecasts are available.
 This solution is needed to estimate the avoided costs for coalitions of EVA forecasts.
+
+This model is not intended to be executed independently.
+It is called by higher-level routines that perform the full day-ahead and real-time dispatch optimisation workflow.
 
 
 Andrey Churkin https://andreychurkin.ru/
