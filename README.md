@@ -48,9 +48,15 @@ This illustrates how introducing an accuracy-based scoring can mitigate penaltie
 However, a purely accuracy-based valuation does not reflect the true monetary impact of EVA forecasts and the value of their locations. Therefore, a balance between accuracy-based and value-oriented approaches is required for practical implementation.
 
 ### RUNNING THE TOOL:
-To be added...
+The main functions for simulating forecast-sharing markets are located in `/functions/main`. Supporting modules for formulating dispatch optimisation models are provided in `/functions/optimisation`, while the forecast valuation functions are placed in `/functions/valuation`.
 
-`coalitional_analysis.jl` performs the coalitional analysis of EVA forecasts. Marginal contributions of players are estimated for each coalition. Then, several solution concepts are implemented to allocate the savings among forecast providers, including: the Shapley value, Nucleolus, and the LOO approach.
+Overview of the main functions:
+- `coalitional_analysis.jl` performs forecast valuation once for a single forecast-sharing market instance. It formulates a cooperative game among EVA forecasts, evaluates all possible coalitions, and applies several solution concepts to allocate the savings among forecast providers.
+- `iterative_coalitional_analysis.jl` performs the coalitional analysis iteratively for different values of EVA loads.
+- `Monte_Carlo_coalitional_analysis.jl` runs the coalitional analysis across multiple scenarios where EVAs provide forecasts of varying accuracy.
+- `visualise_Monte_Carlo_coalitional_analysis.jl` visualises the outcome of the Monte Carlo analysis, showing the relationship between forecast errors and EVA payments.
+- `Monte_Carlo_accuracy_adjusted_Shapley.jl` calculates and visualises the accuracy-adjusted Shapley values for the previously saved Monte Carlo simulations.
+- `Monte_Carlo_forecast_impact.jl` performs a Monte Carlo analysis to analyse the impact of different random forecasts on the total avoided cost. No coalitional analysis is included in this script. Only the grand coalition is considered to calculate the effect of sharing all EVA forecasts.
 
 ### AUTHORS:
 The project is led by Dr. Andrey Churkin, Prof. Pierre Pinson, Prof. Janusz Bialek, and Dr. David Pozo.
