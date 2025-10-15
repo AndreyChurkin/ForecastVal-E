@@ -32,9 +32,9 @@ optimize_with = "Gurobi"
 
 # # Select the .m network data file to solve OPF:
 
-# file = "../cases/case33bw (pure).m" # the original case33bw has parsing problems
-# file = "../cases/case33bw (mod) v1.0.m" # <-- voltage at node 1 fixed to 1.0 pu
-file = "../cases/case33bw (mod) v1.1.m" # <-- case33bw used in the paper "Tracing, Ranking and Valuation of Aggregated DER Flexibility in Active Distribution Networks"
+# file = "../../cases/case33bw (pure).m" # the original case33bw has parsing problems
+# file = "../../cases/case33bw (mod) v1.0.m" # <-- voltage at node 1 fixed to 1.0 pu
+file = "../../cases/case33bw (mod) v1.1.m" # <-- case33bw used in the paper "Tracing, Ranking and Valuation of Aggregated DER Flexibility in Active Distribution Networks"
 
 
 network_data = parse_file(file)
@@ -225,17 +225,17 @@ Players = [22 32 14]
 # # ------------ Data valuation starts here ------------
 
 # # Functions for defining the coalitional structure and calculating the Shapley value:
-include("Shapley_matrix.jl")
-include("Shapley_value.jl")
-include("allocation_rescaling.jl")
+include("../valuation/Shapley_matrix.jl")
+include("../valuation/Shapley_value.jl")
+include("../valuation/allocation_rescaling.jl")
 # # Function to check whether the Core of a cooperative game is non-empty (returns true if non-empty, false otherwise):
-include("Core_nonemptiness_check.jl")
+include("../valuation/Core_nonemptiness_check.jl")
 # # Function to calculate the Nucleolus:
-include("Nucleolus.jl")
+include("../valuation/Nucleolus.jl")
 # # Function to calculate the Nash bargaining solution:
-include("Nash_Bargaining.jl")
+include("../valuation/Nash_Bargaining.jl")
 # # Function to calculate the accuracy-adjusted Shapley value:
-include("Accuracy_adjusted_Shapley.jl")
+include("../valuation/Accuracy_adjusted_Shapley.jl")
 
 u = Shapley_matrix(length(Players)) # get the coalitional structure
 V = zeros(2^length(Players)) # the characteristic function
@@ -258,7 +258,7 @@ println()
 println("Solving the day-ahead and balancing dispatches for the case with no EVA forecasts")
 
 @suppress begin
-      include("DA_dispatch_without_forecasts.jl") # <-- day-ahead dispatch formulation
+      include("../optimisation/DA_dispatch_without_forecasts.jl") # <-- day-ahead dispatch formulation
       optimize!(OPFmodel_DA)
 end # @suppress
 
@@ -280,7 +280,7 @@ end
 global DA_dispatch_solution["total_DA_cost"] = Dict("EUR/h" => objective_value(OPFmodel_DA)*network_data["baseMVA"])
 
 @suppress begin
-      include("BM_dispatch.jl") # <-- balancing dispatch formulation
+      include("../optimisation/BM_dispatch.jl") # <-- balancing dispatch formulation
       optimize!(OPFmodel_BM)
 end # @suppress
 
@@ -320,7 +320,7 @@ for cl = 1:2^length(Players)
       # # First, the day-ahead dispatch is formulated and solved:
 
       @suppress begin
-            include("DA_dispatch_for_coalition.jl") # <-- day-ahead dispatch formulation
+            include("../optimisation/DA_dispatch_for_coalition.jl") # <-- day-ahead dispatch formulation
             optimize!(OPFmodel_DA)
       end # @suppress
         
@@ -349,7 +349,7 @@ for cl = 1:2^length(Players)
       # # Then, the balancing market dispatch is formulated and solved:
 
       @suppress begin
-            include("BM_dispatch.jl") # <-- balancing dispatch formulation
+            include("../optimisation/BM_dispatch.jl") # <-- balancing dispatch formulation
             optimize!(OPFmodel_BM)
       end # @suppress
 
